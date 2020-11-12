@@ -7,6 +7,7 @@ Servo locker;
 #define GREEN_LED_PIN 12
 #define BUTTON_PIN 8
 #define WAIT_TIME 60
+#define CRACKER_TIME 12
 
 int buttonState;
 
@@ -19,15 +20,14 @@ void setup() {
     locker.write(0);
     digitalWrite(RED_LED_PIN, HIGH);
     digitalWrite(GREEN_LED_PIN, LOW);
+
+    delay(WAIT_TIME * 1000);
+    delay(CRACKER_TIME * 1000);
+    locker.write(90);
+    digitalWrite(RED_LED_PIN, LOW);
+    digitalWrite(GREEN_LED_PIN, HIGH);
 }
 
 void loop() {
-    buttonState = digitalRead(BUTTON_PIN);
-
-    if (buttonState == 1) {
-       delay(WAIT_TIME * 1000);
-       locker.write(90);
-       digitalWrite(RED_LED_PIN, LOW);
-       digitalWrite(GREEN_LED_PIN, HIGH);
-    }
+    // None
 }
